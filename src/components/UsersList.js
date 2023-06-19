@@ -16,7 +16,7 @@ function UsersList() {
   useEffect(() => {
     setIsLoadingUsers(true);
     dispatch(fetchUsers())
-      .unwrap()
+      .unwrap() ////// a different promise function
       .then(() => {
         console.log("Success!");
       })
