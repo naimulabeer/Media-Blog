@@ -17,12 +17,8 @@ function UsersList() {
     setIsLoadingUsers(true);
     dispatch(fetchUsers())
       .unwrap() ////// a different promise function
-      .then(() => {
-        console.log("Success!");
-      })
-      .catch(() => {
-        console.log("Fail!");
-      });
+      .catch((err) => setLoadingUsersError(err))
+      .finally(() => setIsLoadingUsers(false)); /////new function if we have have call set state twice in single promise (no need for .then)
   }, [dispatch]);
 
   const handleUserAdd = () => {
