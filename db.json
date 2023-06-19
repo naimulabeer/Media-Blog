@@ -1,10 +1,14 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "name": "Abeer"
-        }
-    ],
-    "albums": [],
-    "photos": []
+  "users": [
+    {
+      "id": 1,
+      "name": "Abeer"
+    },
+    {
+      "name": "Perry Mraz",
+      "id": 2
+    }
+  ],
+  "albums": [],
+  "photos": []
 }
