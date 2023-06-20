@@ -1,34 +1,26 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { fetchUsers, addUser } from "../store";
 import Button from "./Button";
 import Skeleton from "./Skeleton";
+import { useThunk } from "../hooks/use-thunk";
 
 function UsersList() {
-  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
-  const [loadingUsersError, setLoadingUsersError] = useState(null);
-  const [isCreatingUser, setIsCreatingUser] = useState(false);
-  const [creatingUserError, setCreatingUserError] = useState(null);
+  const [doFetchUsers, isLoadingUsers, loadingUsersError] =
+    useThunk(fetchUsers);
 
-  const dispatch = useDispatch();
+  const [doCreateUser, isCreatingUser, creatingUserError] = useThunk(addUser);
+
   const { data } = useSelector((state) => {
     return state.users; ///// {data: [], isLoading: false, error: null}
   });
 
   useEffect(() => {
-    setIsLoadingUsers(true);
-    dispatch(fetchUsers())
-      .unwrap() ////// a different promise function
-      .catch((err) => setLoadingUsersError(err))
-      .finally(() => setIsLoadingUsers(false)); /////new function if we have have call set state twice in single promise (no need for .then)
-  }, [dispatch]);
+    doFetchUsers();
+  }, [doFetchUsers]);
 
   const handleUserAdd = () => {
-    setIsCreatingUser(true);
-    dispatch(addUser())
-      .unwrap()
-      .catch((err) => setCreatingUserError(err))
-      .finally(() => setIsCreatingUser(false));
+    doCreateUser();
   };
 
   if (isLoadingUsers) {
