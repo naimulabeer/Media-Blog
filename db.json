@@ -18,6 +18,16 @@
       "id": 10,
       "title": "Cheems",
       "userId": 1
+    },
+    {
+      "userId": 1,
+      "title": "Licensed Bronze Bike",
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "title": "Unbranded Concrete Chips",
+      "id": 12
     }
   ],
   "photos": []
