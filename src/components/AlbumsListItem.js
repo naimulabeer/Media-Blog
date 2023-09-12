@@ -14,6 +14,7 @@ function AlbumsListItem({ album }) {
   const header = (
     <>
       <Button
+        danger
         className="mr-2"
         loading={results.isLoading}
         onClick={handleRemoveAlbum}
